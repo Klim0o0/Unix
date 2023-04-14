@@ -58,10 +58,10 @@ int main(int argc, char *argv[]) {
     int readed = read(fa, buffer, blockSize);
     while (readed) {
         if (isZeroBlock(buffer, readed))
-            lseek(fb, blockSize, SEEK_CUR);
+            lseek(fb, readed, SEEK_CUR);
         else
             write(fb, buffer, blockSize);
-        readed = read(fa, buffer, blockSize);
+        readed = read(fa, buffer, readed);
     }
 
     close(fb);
